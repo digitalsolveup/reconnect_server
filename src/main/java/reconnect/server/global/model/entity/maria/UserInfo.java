@@ -1,4 +1,4 @@
-package reconnect.server.global.model.entity;
+package reconnect.server.global.model.entity.maria;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

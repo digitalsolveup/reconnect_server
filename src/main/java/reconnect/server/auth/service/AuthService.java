@@ -18,8 +18,8 @@ import reconnect.server.auth.model.response.TokenResponse;
 import reconnect.server.auth.repository.UserInfoRepository;
 import reconnect.server.auth.repository.UserTokenRepository;
 import reconnect.server.auth.security.JwtTokenProvider;
-import reconnect.server.global.model.entity.UserInfo;
-import reconnect.server.global.model.entity.UserToken;
+import reconnect.server.global.model.entity.maria.UserInfo;
+import reconnect.server.global.model.entity.maria.UserToken;
 import reconnect.server.global.model.response.Response;
 
 import java.util.concurrent.atomic.AtomicReference;
