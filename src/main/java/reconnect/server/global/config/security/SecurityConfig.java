@@ -11,8 +11,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import reconnect.server.auth.security.JwtAuthenticationFilter;
-import reconnect.server.auth.security.JwtTokenProvider;
+import reconnect.server.domain.auth.security.JwtAuthenticationFilter;
+import reconnect.server.domain.auth.security.JwtTokenProvider;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 

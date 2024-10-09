@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import reconnect.server.alarm.model.vo.UserAlarmInfo;
+import reconnect.server.domain.alarm.model.vo.UserAlarmInfo;
 import reconnect.server.global.constants.MongoField;
 
 import java.time.LocalDate;
