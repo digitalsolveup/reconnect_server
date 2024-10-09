@@ -3,7 +3,7 @@ package reconnect.server.auth.security;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import reconnect.server.global.model.entity.UserInfo;
+import reconnect.server.global.model.entity.maria.UserInfo;
 
 import java.util.Objects;
 
