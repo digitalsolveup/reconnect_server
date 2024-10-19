@@ -18,10 +18,10 @@ public class MapController {
     private final GptExecutor gptExecutor;
 
     @MessageMapping("/ws/location")
-    public void handleLocation(LocationRequest locationRequest) {
+    public void handleLocation(LocationRequest locationRequest, Long missedUserSeq) {
 
         // 실시간 사용자 위치 처리 후 GPT API에 요청
-        List<Location> predictedLocations = gptExecutor.getPredictedLocations(locationRequest);
+        List<Location> predictedLocations = gptExecutor.getPredictedLocations(locationRequest, missedUserSeq);
 
         // 클라이언트에게 실종자 가능 위치를 실시간 전송
         messagingTemplate.convertAndSend("/topic/predicted-locations", predictedLocations);

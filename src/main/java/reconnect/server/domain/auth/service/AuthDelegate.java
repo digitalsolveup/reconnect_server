@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import reconnect.server.domain.auth.repository.UserInfoRepository;
-import reconnect.server.global.model.entity.maria.UserInfo;
+import reconnect.server.global.model.entity.mysql.UserInfo;
 
 import java.util.Collections;
 
