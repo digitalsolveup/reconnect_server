@@ -2,7 +2,7 @@ package reconnect.server.domain.report.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reconnect.server.domain.report.model.entity.Report;
+import reconnect.server.global.model.entity.mysql.Report;
 import reconnect.server.domain.report.repository.ReportRepository;
 
 import java.util.List;

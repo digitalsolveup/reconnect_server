@@ -1,11 +1,9 @@
 package reconnect.server.domain.missing_person.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import reconnect.server.domain.missing_person.model.entity.MissingPerson;
+import reconnect.server.global.model.entity.mysql.MissingPerson;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package reconnect.server.domain.missing_person.model.enums;
+package reconnect.server.global.model.enums;
 
 public enum FaceType {
     OVAL,

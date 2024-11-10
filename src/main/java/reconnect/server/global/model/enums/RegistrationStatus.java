@@ -1,4 +1,4 @@
-package reconnect.server.domain.preperson.model.enums;
+package reconnect.server.global.model.enums;
 
 public enum RegistrationStatus {
     PENDING,  // 미완료

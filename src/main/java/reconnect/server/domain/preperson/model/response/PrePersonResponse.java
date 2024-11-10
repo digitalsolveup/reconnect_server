@@ -1,7 +1,7 @@
 package reconnect.server.domain.preperson.model.response;
 
 import lombok.Data;
-import reconnect.server.domain.preperson.model.enums.RegistrationStatus;
+import reconnect.server.global.model.enums.RegistrationStatus;
 
 @Data
 public class PrePersonResponse {

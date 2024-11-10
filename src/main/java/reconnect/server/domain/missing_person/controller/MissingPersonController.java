@@ -2,7 +2,7 @@ package reconnect.server.domain.missing_person.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import reconnect.server.domain.missing_person.model.entity.MissingPerson;
+import reconnect.server.global.model.entity.mysql.MissingPerson;
 import reconnect.server.domain.missing_person.service.MissingPersonService;
 
 import java.util.List;

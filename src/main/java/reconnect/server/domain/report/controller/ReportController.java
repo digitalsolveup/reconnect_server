@@ -2,7 +2,7 @@ package reconnect.server.domain.report.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import reconnect.server.domain.report.model.entity.Report;
+import reconnect.server.global.model.entity.mysql.Report;
 import reconnect.server.domain.report.service.ReportService;
 
 import java.util.List;

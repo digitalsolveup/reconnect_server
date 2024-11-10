@@ -1,11 +1,14 @@
-package reconnect.server.domain.missing_person.model.entity;
+package reconnect.server.global.model.entity.mysql;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import reconnect.server.domain.missing_person.model.enums.*;
+import reconnect.server.global.model.enums.BodyType;
+import reconnect.server.global.model.enums.FaceType;
+import reconnect.server.global.model.enums.Gender;
+import reconnect.server.global.model.enums.SpecialFeature;
 
 import java.time.LocalDateTime;
 

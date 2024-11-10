@@ -2,7 +2,7 @@ package reconnect.server.domain.missing_person.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reconnect.server.domain.missing_person.model.entity.MissingPerson;
+import reconnect.server.global.model.entity.mysql.MissingPerson;
 import reconnect.server.domain.missing_person.repository.MissingPersonRepository;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package reconnect.server.domain.report.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import reconnect.server.domain.report.model.entity.Report;
+import reconnect.server.global.model.entity.mysql.Report;
 
 import java.util.List;
 

@@ -1,13 +1,13 @@
-package reconnect.server.domain.preperson.model.entity;
+package reconnect.server.global.model.entity.mysql;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import reconnect.server.domain.missing_person.model.enums.Gender;
-import reconnect.server.domain.missing_person.model.enums.SpecialFeature;
-import reconnect.server.domain.preperson.model.enums.RegistrationStatus;
+import reconnect.server.global.model.enums.Gender;
+import reconnect.server.global.model.enums.SpecialFeature;
+import reconnect.server.global.model.enums.RegistrationStatus;
 import java.time.LocalDate;
 
 @Data

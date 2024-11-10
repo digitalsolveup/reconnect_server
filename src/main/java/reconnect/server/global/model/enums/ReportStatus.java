@@ -1,4 +1,4 @@
-package reconnect.server.domain.report.model.enums;
+package reconnect.server.global.model.enums;
 
 public enum ReportStatus {
     SEARCHING,  // 수색 중

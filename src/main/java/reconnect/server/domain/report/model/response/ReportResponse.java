@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import reconnect.server.domain.missing_person.model.entity.MissingPerson;
-import reconnect.server.domain.report.model.enums.*;
+import reconnect.server.global.model.entity.mysql.MissingPerson;
+import reconnect.server.global.model.enums.AgeGroup;
+import reconnect.server.global.model.enums.ReportGender;
+import reconnect.server.global.model.enums.ReportSpecialFeature;
 
 import java.time.LocalDateTime;
 import java.util.List;
