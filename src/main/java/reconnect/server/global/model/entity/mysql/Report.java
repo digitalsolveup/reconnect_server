@@ -5,9 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import reconnect.server.global.model.enums.AgeGroup;
-import reconnect.server.global.model.enums.ReportGender;
-import reconnect.server.global.model.enums.ReportSpecialFeature;
+import reconnect.server.global.model.enums.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -46,4 +44,6 @@ public class Report {
     private String surroundingImageUrl;
     private String additionalReport;
     private LocalDateTime reportedAt;
+
+    private int reportCount;  // 제보 수 필드
 }

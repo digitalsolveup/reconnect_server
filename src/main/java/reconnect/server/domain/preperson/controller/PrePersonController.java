@@ -1,32 +1,43 @@
 package reconnect.server.domain.preperson.controller;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import reconnect.server.global.model.entity.mysql.PrePerson;
+import reconnect.server.domain.preperson.model.request.PrePersonRequest;
+import reconnect.server.domain.preperson.model.response.PrePersonResponse;
 import reconnect.server.domain.preperson.service.PrePersonService;
+import reconnect.server.global.model.entity.mysql.PrePerson;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/preperson")
-@RequiredArgsConstructor
+@RequestMapping("/api/prepersons")
 public class PrePersonController {
 
     private final PrePersonService prePersonService;
 
-    // 모든 사전등록된 대상 조회
-    @GetMapping
-    public ResponseEntity<List<PrePerson>> getAllPrePersons() {
-        List<PrePerson> prePersons = prePersonService.getAllPrePersons();
-        return new ResponseEntity<>(prePersons, HttpStatus.OK);
+    @Autowired
+    public PrePersonController(PrePersonService prePersonService) {
+        this.prePersonService = prePersonService;
     }
 
-    // 새로운 대상 등록
-    @PostMapping("/register")
-    public ResponseEntity<PrePerson> registerPrePerson(@RequestBody PrePerson prePerson) {
-        PrePerson savedPrePerson = prePersonService.registerPrePerson(prePerson);
-        return new ResponseEntity<>(savedPrePerson, HttpStatus.CREATED);
+    // 사전 등록 실종자 목록 조회
+    @GetMapping
+    public List<PrePersonResponse> getPrePersons() {
+        return prePersonService.getPrePersons().stream()
+                .map(person -> {
+                    PrePersonResponse response = new PrePersonResponse();
+                    response.setId(person.getId());
+                    response.setName(person.getName());
+                    response.setStatus(person.getStatus());
+                    return response;
+                })
+                .collect(Collectors.toList());
+    }
+
+    // 사전 등록 실종자 등록 (최종 저장)
+    @PostMapping
+    public PrePerson createPrePerson(@RequestBody PrePersonRequest prePersonRequest) {
+        return prePersonService.createPrePerson(prePersonRequest);
     }
 }

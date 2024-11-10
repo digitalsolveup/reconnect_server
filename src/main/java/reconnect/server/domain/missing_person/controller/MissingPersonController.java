@@ -1,20 +1,29 @@
 package reconnect.server.domain.missing_person.controller;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import reconnect.server.global.model.entity.mysql.MissingPerson;
+import reconnect.server.domain.missing_person.model.response.MissingPersonResponse;
 import reconnect.server.domain.missing_person.service.MissingPersonService;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/missing-persons")
-@RequiredArgsConstructor
 public class MissingPersonController {
+
     private final MissingPersonService missingPersonService;
 
+    @Autowired
+    public MissingPersonController(MissingPersonService missingPersonService) {
+        this.missingPersonService = missingPersonService;
+    }
+
     @GetMapping
-    public List<MissingPerson> getAllMissingPersons() {
-        return missingPersonService.getAllMissingPersons();
+    public List<MissingPersonResponse> getMissingPersons(@RequestParam(defaultValue = "REGISTRATION_DATE") String sortBy) {
+        return missingPersonService.getMissingPersons(sortBy);
+    }
+
+    @GetMapping("/{id}")
+    public MissingPersonResponse getMissingPersonDetails(@PathVariable Long id) {
+        return missingPersonService.getMissingPersonDetails(id);
     }
 }

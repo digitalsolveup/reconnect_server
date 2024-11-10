@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import reconnect.server.global.model.enums.Gender;
 import reconnect.server.global.model.enums.SpecialFeature;
 import reconnect.server.global.model.enums.RegistrationStatus;
+
 import java.time.LocalDate;
 
 @Data
@@ -27,7 +28,7 @@ public class PrePerson {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private RegistrationStatus status;  // 등록 상태 (심사 완료 등)
+    private RegistrationStatus status;  // 등록 상태
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
