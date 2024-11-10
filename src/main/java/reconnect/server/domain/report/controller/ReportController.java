@@ -17,6 +17,13 @@ public class ReportController {
         this.reportService = reportService;
     }
 
+    // 특정 실종자 정보 조회
+    @GetMapping("/missing-person-info/{id}")
+    public Object[] getMissingPersonInfo(@PathVariable Long id) {
+        return reportService.getMissingPersonInfo(id);
+    }
+
+    // 제보 생성
     @PostMapping
     public ReportResponse createReport(@RequestBody ReportRequest reportRequest) {
         return reportService.createReport(reportRequest);

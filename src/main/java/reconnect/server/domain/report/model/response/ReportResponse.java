@@ -1,5 +1,6 @@
 package reconnect.server.domain.report.model.response;
 
+import lombok.Builder;
 import lombok.Data;
 import reconnect.server.global.model.enums.*;
 
@@ -7,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Builder
 public class ReportResponse {
     private Long reportId;
     private Long missingPersonId;

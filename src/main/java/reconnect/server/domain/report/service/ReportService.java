@@ -9,6 +9,8 @@ import reconnect.server.global.model.entity.mysql.MissingPerson;
 import reconnect.server.global.model.entity.mysql.Report;
 import reconnect.server.domain.missing_person.repository.MissingPersonRepository;
 
+import java.util.Optional;
+
 @Service
 public class ReportService {
 
@@ -21,11 +23,17 @@ public class ReportService {
         this.missingPersonRepository = missingPersonRepository;
     }
 
+    // 제보 화면 실종자 정보 조회
+    public Object[] getMissingPersonInfo(Long missingPersonId) {
+        return reportRepository.findMissingPersonInfoById(missingPersonId);
+    }
+
+    // 제보 생성
     public ReportResponse createReport(ReportRequest reportRequest) {
         MissingPerson missingPerson = missingPersonRepository.findById(reportRequest.getMissingPersonId())
                 .orElseThrow(() -> new RuntimeException("MissingPerson not found"));
 
-        // Report entity 생성
+        // Report 엔티티 생성 및 저장
         Report report = mapToEntity(reportRequest, missingPerson);
         reportRepository.save(report);
 
@@ -48,8 +56,7 @@ public class ReportService {
                 .additionalDescription(request.getAdditionalDescription())
                 .surroundingImageUrl(request.getSurroundingImageUrl())
                 .additionalReport(request.getAdditionalReport())
-                .reportedAt(request.getReportedAt())
-                .reportCount(missingPerson.getReportCount() + 1)  // 추가된 count
+                .reportCount(missingPerson.getReportCount() + 1)
                 .build();
     }
 
@@ -66,7 +73,6 @@ public class ReportService {
                 .additionalDescription(report.getAdditionalDescription())
                 .surroundingImageUrl(report.getSurroundingImageUrl())
                 .additionalReport(report.getAdditionalReport())
-                .reportedAt(report.getReportedAt())
                 .reportCount(report.getReportCount())
                 .build();
     }
