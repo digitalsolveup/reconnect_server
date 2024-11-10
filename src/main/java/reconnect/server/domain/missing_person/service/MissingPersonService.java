@@ -19,6 +19,7 @@ public class MissingPersonService {
         this.missingPersonRepository = missingPersonRepository;
     }
 
+    // 실종자 목록 조회 - 정렬 기준에 따라
     public List<MissingPersonResponse> getMissingPersons(String sortBy) {
         List<MissingPerson> persons;
         if (sortBy.equals("REPORT_COUNT")) {
@@ -29,11 +30,14 @@ public class MissingPersonService {
         return persons.stream().map(this::mapToResponse).collect(Collectors.toList());
     }
 
+    // 실종자 상세 정보 조회
     public MissingPersonResponse getMissingPersonDetails(Long id) {
-        MissingPerson person = missingPersonRepository.findById(id).orElseThrow(() -> new RuntimeException("MissingPerson not found"));
+        MissingPerson person = missingPersonRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("MissingPerson not found"));
         return mapToResponse(person);
     }
 
+    // MissingPerson을 MissingPersonResponse로 변환
     private MissingPersonResponse mapToResponse(MissingPerson person) {
         MissingPersonResponse response = new MissingPersonResponse();
         response.setId(person.getId());
