@@ -1,4 +1,9 @@
 import org.hidetake.gradle.swagger.generator.GenerateSwaggerUI
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
 
 plugins {
     id 'java'
@@ -69,6 +74,13 @@ dependencies {
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
     implementation group: 'org.jetbrains', name: 'annotations', version: '15.0'
 
+    // QueryDSL
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
+    annotationProcessor("com.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
+    annotationProcessor("jakarta.annotation:jakarta.annotation-api")
+    annotationProcessor("jakarta.persistence:jakarta.persistence-api")
+
     // SwaggerUI
     swaggerUI 'org.webjars:swagger-ui:4.11.1'
     implementation'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
@@ -78,12 +90,29 @@ dependencies {
 
 }
 
+def generatedFilesBaseDir = "${projectDir}/src/generated"
+
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
+/**
+ * QueryDSL Build Options
+ */
+def querydslDir = "src/main/generated"
+
+sourceSets {
+    main.java.srcDirs += [ querydslDir ]
 }
+
+tasks.withType(JavaCompile).configureEach {
+    options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
+}
+
+clean.doLast {
+    file(querydslDir).deleteDir()
+}
+
+
