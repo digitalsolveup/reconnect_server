@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface MissingPersonRepository extends JpaRepository<MissingPerson, Long> {
 
+    MissingPerson findMissingPersonById(Long id);
+
     // 등록순 정렬
     @Query("SELECT m FROM MissingPerson m ORDER BY m.lastSeenDateTime DESC")
     List<MissingPerson> findAllOrderByRegistrationDate();
