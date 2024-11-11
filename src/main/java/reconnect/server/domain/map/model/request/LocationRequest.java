@@ -11,5 +11,6 @@ import reconnect.server.global.model.request.GptRequest;
 @NoArgsConstructor
 public class LocationRequest extends GptRequest {
     private Location userLocation;
-    Integer radius;
+    private Integer radius;
+    private Long missedUserSeq;
 }
