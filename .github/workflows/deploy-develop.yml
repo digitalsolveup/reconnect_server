@@ -34,6 +34,10 @@ jobs:
       - name: install sshpass
         run: sudo apt-get install -y sshpass
 
+      - name: Create target directory on EC2
+        run: |
+          sshpass -p "${{ secrets.PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "mkdir -p /home/reconnect_server/{tobe,current,logs}"
+
       - name: send build file to EC2 with SCP using password
         run: |
           sshpass -p "${{ secrets.PASSWORD }}" scp -o StrictHostKeyChecking=no project.jar ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/reconnect_server/tobe
@@ -56,7 +60,7 @@ jobs:
               echo "Killing process $pid..."
               sudo kill $pid
             else
-              echo "No process found on port 9475."
+              echo "No process found on port 8080."
             fi
 
             # Start the server
