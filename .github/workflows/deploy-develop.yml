@@ -31,34 +31,26 @@ jobs:
       - name: change build file name
         run: mv ./build/libs/*SNAPSHOT.jar ./project.jar
 
-      - name: send build file to EC2 with SCP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_PRIVATE_KEY }}
-          source: project.jar
-          target: /home/reconnect_server/tobe
+      - name: install sshpass
+        run: sudo apt-get install -y sshpass
 
-      - name: connect to EC2 with SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_PRIVATE_KEY }}
-          envs: APPLICATION_PROPERTIES
-          script_stop: true
-          script: |
-            # 1. 'current' 디렉토리 제거
+      - name: send build file to EC2 with SCP using password
+        run: |
+          sshpass -p "${{ secrets.PASSWORD }}" scp -o StrictHostKeyChecking=no project.jar ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/reconnect_server/tobe
+
+      - name: connect to EC2 with SSH using password
+        run: |
+          sshpass -p "${{ secrets.PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} << 'EOF'
+            # Remove old current directory
             sudo rm -rf /home/reconnect_server/current || true
 
-            # 2. 필요한 디렉토리 생성
+            # Create necessary directories
             sudo mkdir -p /home/reconnect_server/{tobe,current,logs}
 
-            # 3. JAR 파일 이동
+            # Move the JAR file to the current directory
             sudo mv /home/reconnect_server/tobe/project.jar /home/reconnect_server/current/project.jar
 
-            # 4. 포트 8080 실행 중인 프로세스 종료
+            # Kill any existing process on port 8080
             pid=$(lsof -t -i :8080)
             if [ -n "$pid" ]; then
               echo "Killing process $pid..."
@@ -67,7 +59,7 @@ jobs:
               echo "No process found on port 9475."
             fi
 
-            # 5. 서버 시작
+            # Start the server
             cd /home/reconnect_server/current
             nohup java -jar project.jar --spring.profiles.active=local > /home/reconnect_server/logs/server.log 2>&1 &
             if [ $? -ne 0 ]; then
@@ -75,5 +67,6 @@ jobs:
               exit 1
             fi
 
-            # 6. 'tobe' 디렉토리 제거
+            # Remove old 'tobe' directory
             sudo rm -rf /home/reconnect_server/tobe || true
+          EOF
