@@ -28,7 +28,7 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return web -> web.ignoring()
                 .requestMatchers("/api/auth/**", "/swagger-ui/**", "/swagger/**", "/swagger-resources/**", "/swagger-ui.html",
-                        "/v3/api-docs/**", "/css/**", "/js/**", "/img/**", "/lib/**",
+                        "/v3/api-docs/**", "/css/**", "/js/**", "/img/**", "/lib/**", "/ws/**", "/app/**",
                         "/configuration/ui", "/configuration/security", "/webjars/**", "/api/auth/**");
     }
 
@@ -42,6 +42,8 @@ public class SecurityConfig {
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
+                                .requestMatchers("/app/**").permitAll()
+                                .requestMatchers("/ws/**").permitAll()
                                 .requestMatchers("/api/**").permitAll()
                                 .anyRequest().authenticated())
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
