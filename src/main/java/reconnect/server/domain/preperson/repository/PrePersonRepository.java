@@ -10,8 +10,10 @@ import java.util.List;
 public interface PrePersonRepository extends JpaRepository<PrePerson, Long> {
 
     // 1. SELECT 쿼리로 id, name, status 필드만 조회
-    @Query("SELECT p.id, p.name, p.status FROM PrePerson p")
-    List<Object[]> findIdNameStatus();
+//    @Query("SELECT p.id, p.name, p.status FROM PrePerson p")
+//    List<Object[]> findIdNameStatus();
+
+    List<PrePerson> findBy();
 
     // 2. INSERT 쿼리
     @Query(value = "INSERT INTO pre_person " +

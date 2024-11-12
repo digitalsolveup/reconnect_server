@@ -24,15 +24,7 @@ public class PrePersonController {
     // 사전 등록 실종자 목록 조회
     @GetMapping
     public List<PrePersonResponse> getPrePersons() {
-        return prePersonService.getPrePersons().stream()
-                .map(person -> {
-                    PrePersonResponse response = new PrePersonResponse();
-                    response.setId(person.getId());
-                    response.setName(person.getName());
-                    response.setStatus(person.getStatus());
-                    return response;
-                })
-                .collect(Collectors.toList());
+        return prePersonService.getPrePersonResponses();
     }
 
     // 사전 등록 실종자 등록 (최종 저장)

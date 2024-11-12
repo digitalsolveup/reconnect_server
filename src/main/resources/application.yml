@@ -1,4 +1,3 @@
-#spring.application.name=reconnect_server
 spring:
   profiles:
-    active: application-local
+    active: local
