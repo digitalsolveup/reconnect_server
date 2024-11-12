@@ -40,10 +40,12 @@ public class Report {
 
     private String foundImageUrl;
     private String locationFound;
+//    private double lastSeenLatitude;
+//    private double lastSeenLongitude;
     private String additionalDescription;
     private String surroundingImageUrl;
     private String additionalReport;
     private LocalDateTime reportedAt;
 
-    private int reportCount;  // 제보 수 필드
+    private int reportCount;  // 제보 수
 }
