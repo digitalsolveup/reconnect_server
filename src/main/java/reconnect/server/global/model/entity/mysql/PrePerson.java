@@ -22,7 +22,7 @@ public class PrePerson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 사전 실종자 고유id
+    private Long id; // 사전 실종자 고유 id
 
     @Column(nullable = false)
     private String name; // 사전 실종자 이름
