@@ -1,25 +1,31 @@
 package reconnect.server.domain.report.controller;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import reconnect.server.global.model.entity.mysql.Report;
+import reconnect.server.domain.report.model.request.ReportRequest;
+import reconnect.server.domain.report.model.response.ReportResponse;
 import reconnect.server.domain.report.service.ReportService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/reports")
-@RequiredArgsConstructor
 public class ReportController {
+
     private final ReportService reportService;
 
-    @GetMapping("/missing-person/{id}")
-    public List<Report> getReportsByMissingPerson(@PathVariable Long id) {
-        return reportService.getReportsByMissingPerson(id);
+    @Autowired
+    public ReportController(ReportService reportService) {
+        this.reportService = reportService;
     }
 
+    // 특정 실종자 정보 조회
+    @GetMapping("/missing-person-info/{id}")
+    public Object[] getMissingPersonInfo(@PathVariable Long id) {
+        return reportService.getMissingPersonInfo(id);
+    }
+
+    // 제보 생성
     @PostMapping
-    public Report createReport(@RequestBody Report report) {
-        return reportService.createReport(report);
+    public ReportResponse createReport(@RequestBody ReportRequest reportRequest) {
+        return reportService.createReport(reportRequest);
     }
 }
