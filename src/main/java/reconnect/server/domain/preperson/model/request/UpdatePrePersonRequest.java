@@ -5,7 +5,6 @@ import reconnect.server.global.model.enums.Gender;
 import reconnect.server.global.model.enums.Personality;
 import reconnect.server.global.model.enums.RegistrationStatus;
 import reconnect.server.global.model.enums.SpecialFeature;
-
 import java.time.LocalDate;
 
 @Data
