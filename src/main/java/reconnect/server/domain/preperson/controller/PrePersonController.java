@@ -3,12 +3,13 @@ package reconnect.server.domain.preperson.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reconnect.server.domain.preperson.model.request.PrePersonRequest;
-import reconnect.server.domain.preperson.model.response.PrePersonResponse;
+import reconnect.server.domain.preperson.model.request.UpdatePrePersonRequest;
+import reconnect.server.domain.preperson.model.response.PrePersonDetailResponse;
+import reconnect.server.domain.preperson.model.response.PrePersonListResponse;
 import reconnect.server.domain.preperson.service.PrePersonService;
 import reconnect.server.global.model.entity.mysql.PrePerson;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/prepersons")
@@ -23,13 +24,27 @@ public class PrePersonController {
 
     // 사전 등록 실종자 목록 조회
     @GetMapping
-    public List<PrePersonResponse> getPrePersons() {
+    public List<PrePersonListResponse> getPrePersons() {
         return prePersonService.getPrePersonResponses();
     }
 
     // 사전 등록 실종자 등록 (최종 저장)
     @PostMapping
-    public PrePerson createPrePerson(@RequestBody PrePersonRequest prePersonRequest) {
+    public PrePersonListResponse createPrePerson(@RequestBody PrePersonRequest prePersonRequest) {
         return prePersonService.createPrePerson(prePersonRequest);
     }
+
+    // 사전 등록 실종자 수정
+    @PutMapping("/{id}")
+    public PrePersonDetailResponse updatePrePerson(@PathVariable("id") Long id, @RequestBody UpdatePrePersonRequest updateRequest) {
+        return prePersonService.updatePrePerson(id, updateRequest);
+    }
+
+    // 사전 등록 실종자 삭제
+    @DeleteMapping("/{id}")
+    public void deletePrePerson(@PathVariable("id") Long id) {
+        prePersonService.deletePrePerson(id);
+    }
+
+
 }

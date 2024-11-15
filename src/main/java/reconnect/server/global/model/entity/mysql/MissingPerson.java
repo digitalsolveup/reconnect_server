@@ -47,6 +47,8 @@ public class MissingPerson {
 
     private LocalDateTime lastSeenDateTime;
     private String lastSeenLocation;
+//    private double lastSeenLatitude;
+//    private double lastSeenLongitude;
 
     @Enumerated(EnumType.STRING)
     private Nationality nationality;
