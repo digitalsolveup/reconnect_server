@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reconnect.server.domain.auth.model.request.LoginRequest;
+import reconnect.server.domain.auth.model.request.SignUpRequest;
 import reconnect.server.domain.auth.model.response.TokenResponse;
 import reconnect.server.domain.auth.service.AuthService;
 import reconnect.server.global.model.response.Response;
@@ -23,6 +24,17 @@ import reconnect.server.global.model.response.Response;
  */
 public class AuthController {
     private final AuthService authService;
+
+    /**
+     * 회원가입 Controller
+     */
+    @Operation(summary = "회원가입", description = """
+             회원가입 한다. - Email 필수 포함 권장
+            """)
+    @PostMapping("/account")
+    public TokenResponse createAccount(HttpServletResponse response, SignUpRequest signUpRequest) {
+        return authService.createAccount(response, signUpRequest);
+    }
 
     /**
      * 테스트용 - 로그인 Controller

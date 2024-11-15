@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
+import reconnect.server.domain.auth.mapstruct.SignUpRequestMapper;
 import reconnect.server.domain.auth.model.request.LoginRequest;
+import reconnect.server.domain.auth.model.request.SignUpRequest;
 import reconnect.server.domain.auth.model.response.SocialOAuthResponse;
 import reconnect.server.domain.auth.model.response.TokenResponse;
 import reconnect.server.domain.auth.repository.UserInfoRepository;
@@ -39,9 +41,15 @@ public class AuthService {
     private final UserInfoRepository userInfoRepository;
     private final UserTokenRepository userTokenRepository;
     private final JwtTokenProvider jwtTokenProvider;
+    private final SignUpRequestMapper signUpRequestMapper;
 
     public TokenResponse login(HttpServletResponse response, LoginRequest request){
         UserInfo userInfo = userInfoRepository.findUserByEmail(request.getEmail());
+        return this.makeToken(response, userInfo);
+    }
+
+    public TokenResponse createAccount(HttpServletResponse response, SignUpRequest signUpRequest){
+        UserInfo userInfo = userInfoRepository.save(signUpRequestMapper.toEntity(signUpRequest));
         return this.makeToken(response, userInfo);
     }
 
