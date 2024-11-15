@@ -19,6 +19,7 @@ import java.util.Optional;
 
 import static reconnect.server.global.model.entity.mysql.QMissingPerson.missingPerson;
 
+
 @Repository
 @RequiredArgsConstructor
 public class SearchQueryRepository {

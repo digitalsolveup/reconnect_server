@@ -47,6 +47,8 @@ public class MissingPerson {
 
     private LocalDateTime lastSeenDateTime; // 실종 발생 일시
 
+    private String lastSeenLocation; // 실종 마지막 발견 위치
+
     private double lastSeenLatitude; // 실종 위도
     private double lastSeenLongitude; // 실종 경도
 

@@ -9,4 +9,5 @@ import java.util.List;
 public interface MissingPersonRepository extends JpaRepository<MissingPerson, Long> {
 
     List<MissingPerson> findAllByMissingStatusNot(MissingStatus missingStatus);
+    MissingPerson findMissingPersonById(Long id);
 }

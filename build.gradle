@@ -98,22 +98,29 @@ dependencyManagement {
     }
 }
 
+
 /**
  * QueryDSL Build Options
  */
 def querydslDir = "src/main/generated"
 
 sourceSets {
-    main.java.srcDirs += [ querydslDir ]
+    main {
+        java.srcDir querydslDir
+    }
+    test {
+        java.srcDir querydslDir
+    }
 }
+
 
 tasks.withType(JavaCompile).configureEach {
     options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
-    options.compilerArgs += ["-parameters"]
 }
 
 clean.doLast {
     file(querydslDir).deleteDir()
 }
+
 
 
