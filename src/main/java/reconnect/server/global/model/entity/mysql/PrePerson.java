@@ -51,4 +51,6 @@ public class PrePerson {
     private String additionalInfo; // 기타 특징
 
     private String familyCertificateUrl;  // 가족관계증명서 URL
+
+    private Long registeredUserSeq;
 }

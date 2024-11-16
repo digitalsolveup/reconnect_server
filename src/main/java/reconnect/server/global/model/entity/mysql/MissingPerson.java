@@ -10,7 +10,9 @@ import reconnect.server.global.model.enums.FaceType;
 import reconnect.server.global.model.enums.Gender;
 import reconnect.server.global.model.enums.SpecialFeature;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 @Data
 @Builder
@@ -50,4 +52,16 @@ public class MissingPerson {
 
     private LocalDateTime lastSeenDateTime;
     private String lastSeenLocation;
+
+    public MissingPerson(PrePerson prePerson){
+        this.id = prePerson.getId();
+        this.name = prePerson.getName();
+        this.imageURL = prePerson.getPhotoUrl();
+        this.specialFeature = prePerson.getSpecialFeature();
+        this.gender = prePerson.getGender();
+        this.age = Period.between(prePerson.getBirthDate(), LocalDate.now()).getYears(); // 만 나이
+        this.height = prePerson.getHeight();
+        this.weight = prePerson.getWeight();
+        this.lastSeenDateTime = LocalDateTime.now();
+    }
 }
