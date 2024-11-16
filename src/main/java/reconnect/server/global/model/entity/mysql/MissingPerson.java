@@ -55,7 +55,7 @@ public class MissingPerson {
     @Enumerated(EnumType.STRING)
     private Nationality nationality; // (enum) 내외국인 - DOMESTIC(내국인), FOREIGN(외국인)
 
-    private int reportCount; // 제보 수
+    private int reportCount = 0; // 제보 수
 
     @Enumerated(EnumType.STRING)
     private MissingStatus missingStatus; // (enum) 실종 상태 - SEARCHING(수색중), FOUND(발견완료)
