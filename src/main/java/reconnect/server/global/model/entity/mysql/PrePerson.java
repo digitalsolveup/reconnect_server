@@ -48,7 +48,7 @@ public class PrePerson {
     @Enumerated(EnumType.STRING)
     private Personality personality; // (enum) 성격 - INTROVERTED(내성적인), EXTROVERTED(외향적인), ACTIVE(활발한), CALM(차분한), AGGRESSIVE(공격적인), QUIET(조용한), TALKATIVE(말이 많은)
 
-    // 자주 가는 장소
+    private String frequentLocation; // 자주 가는 장소
     private double lastSeenLatitude; // 위도
     private double lastSeenLongitude; // 경도
 
