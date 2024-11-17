@@ -31,7 +31,8 @@ public class SearchResponse {
         this.imageURL = missingPersonDto.getImageURL();
         this.specialFeature = missingPersonDto.getSpecialFeature();
         this.gender = missingPersonDto.getGender();
-        this.age = missingPersonDto.getHeight();
+        this.age = missingPersonDto.getAge();
+        this.height = missingPersonDto.getHeight();
         this.weight = missingPersonDto.getWeight();
         this.tops = missingPersonDto.getTops();
         this.bottoms = missingPersonDto.getBottoms();
