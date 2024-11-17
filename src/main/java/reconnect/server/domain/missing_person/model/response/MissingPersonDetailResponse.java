@@ -24,6 +24,7 @@ public class MissingPersonDetailResponse {
     private String accessories;
     private String hair;
     private LocalDateTime lastSeenDateTime;
+    private String lastSeenLocation;
     private double lastSeenLatitude;
     private double lastSeenLongitude;
 
@@ -44,6 +45,7 @@ public class MissingPersonDetailResponse {
         this.accessories = missingPerson.getAccessories();
         this.hair = missingPerson.getHair();
         this.lastSeenDateTime = missingPerson.getLastSeenDateTime();
+        this.lastSeenLocation = missingPerson.getLastSeenLocation();
         this.lastSeenLatitude = missingPerson.getLastSeenLatitude();
         this.lastSeenLongitude = missingPerson.getLastSeenLongitude();
     }
