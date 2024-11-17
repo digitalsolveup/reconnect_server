@@ -6,7 +6,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.RestController;
 import reconnect.server.domain.map.model.dto.Location;
 import reconnect.server.domain.map.model.request.LocationRequest;
-import reconnect.server.domain.map.model.response.LocationInfoResponse;
+import reconnect.server.domain.map.model.response.LocationInfoListResponse;
 import reconnect.server.domain.map.model.response.MissingPersonResponse;
 import reconnect.server.domain.map.service.MapService;
 import reconnect.server.global.executor.GptExecutor;
@@ -24,7 +24,7 @@ public class MapController {
     @MessageMapping("/ws/location")
     public void handleLocation(LocationRequest locationRequest) {
 
-        List<Location> predictedLocations = mapService.sendDummyData(locationRequest);
+        List<Location> predictedLocations = mapService.getLocation(locationRequest);
 
         messagingTemplate.convertAndSend("/topic/predicted-locations", predictedLocations);
     }
@@ -46,7 +46,7 @@ public class MapController {
     @MessageMapping("/ws/radius/location-info")
     public void handleLocationInfoInRadius(LocationRequest locationRequest) {
 
-        List<LocationInfoResponse> locationInfoResponses = mapService.getLocationInfoInRadius(locationRequest);
+        LocationInfoListResponse locationInfoResponses = mapService.getLocationInfoInRadius(locationRequest);
 
         messagingTemplate.convertAndSend("/topic/radius-location-info", locationInfoResponses);
     }

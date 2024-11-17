@@ -33,8 +33,8 @@ public class GptExecutor {
                 missingPerson.getAge(),
                 missingPerson.getGender(),
                 missingPerson.getLastSeenLocation(),
-                locationRequest.getUserLocation().getLatitude(),
-                locationRequest.getUserLocation().getLongitude()
+                locationRequest.getUserLocation().getLat(),
+                locationRequest.getUserLocation().getLng()
         );
 
         // GptRequest에 프롬프트 및 필요한 매개변수 설정
