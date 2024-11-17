@@ -18,4 +18,9 @@ public class AuthConstants {
     public static final String GOOGLE = "google";
     public static final String GOOGLE_VALIDATE_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
 
+    // kakao
+    public static final String KAKAO = "kakao";
+    public static final String KAKAO_VALIDATE_URL = "https://kapi.kakao.com/v2/user/me";
+
+
 }

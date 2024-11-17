@@ -23,4 +23,6 @@ public class SocialOAuthResponse {
     // naver
     private NaverOAuthResponse response;
 
+    // kako
+    private KakaoAccount kakaoAccount;
 }

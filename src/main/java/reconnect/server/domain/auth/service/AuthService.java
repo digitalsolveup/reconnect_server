@@ -53,12 +53,13 @@ public class AuthService {
         return this.makeToken(response, userInfo);
     }
 
-    public Response doVerification(HttpServletResponse response, String provider, String accessToken){
+    public Response doVerification(HttpServletResponse response, String provider, String accessToken) {
 
         String baseUrl;
         switch (provider) {
             case GOOGLE -> baseUrl = GOOGLE_VALIDATE_URL;
             case NAVER -> baseUrl = NAVER_VALIDATE_URL;
+            case KAKAO -> baseUrl = KAKAO_VALIDATE_URL;
             default -> throw new RuntimeException();
         }
 
@@ -82,8 +83,9 @@ public class AuthService {
                         })
                         .block();
 
-        if(!errorResponse.get().isSuccess())
+        if (!errorResponse.get().isSuccess()) {
             return errorResponse.get();
+        }
 
         UserInfo userInfo;
         assert oAuthResponse != null;
@@ -93,11 +95,16 @@ public class AuthService {
                 assert oAuthResponse.getResponse() != null;
                 userInfo = userInfoRepository.findUserByEmail(oAuthResponse.getResponse().getEmail());
             }
+            case KAKAO -> {
+                assert oAuthResponse.getKakaoAccount() != null;
+                userInfo = userInfoRepository.findUserByEmail(oAuthResponse.getKakaoAccount().getEmail());
+            }
             default -> throw new RuntimeException();
         }
 
-        if (userInfo == null)
+        if (userInfo == null) {
             return Response.error(RESOURCE_NOT_FOUND);
+        }
 
         return this.makeToken(response, userInfo);
     }
